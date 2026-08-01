@@ -1,7 +1,34 @@
-"""API-safe wrapper around the canonical ML feature transformations."""
-from pathlib import Path
-import sys, pandas as pd
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "ml"))
-from feature_engineering import FEATURES, build_features as batch_features
+"""Backend-local feature transformations used for live risk scoring.
+
+This module intentionally mirrors the offline training transformations so the
+FastAPI service can be deployed independently of the repository's ``ml``
+directory.
+"""
+from __future__ import annotations
+
+import pandas as pd
+
+FEATURES = [
+    "road_curvature_radius_m", "road_width_m", "lane_count", "speed_limit_kmh",
+    "surface_quality", "elevation_change_m", "sight_distance_m", "road_type_encoded",
+    "junction_complexity", "has_signal", "has_pedestrian_crossing", "has_median",
+    "has_streetlight", "has_speed_breaker", "road_width_to_lane_ratio",
+    "school_within_200m", "hospital_within_500m", "bus_stop_within_100m",
+    "commercial_density", "population_density", "avg_rainfall_mm", "fog_days_per_year",
+    "is_night", "is_rain", "is_festival",
+]
+ROAD_TYPES = {"residential": 0, "collector": 1, "arterial": 2, "highway": 3}
+
+
 def build_features(segment: dict, conditions: dict | None = None) -> pd.DataFrame:
-    return batch_features(pd.DataFrame([segment]), conditions)
+    """Return the same ordered 25-feature frame used by the trained models."""
+    conditions = conditions or {}
+    frame = pd.DataFrame([segment]).copy()
+    frame["surface_quality"] = frame["surface"].map({"unpaved": 0, "paved": 1}).fillna(1)
+    frame["road_type_encoded"] = frame["road_type"].map(ROAD_TYPES).fillna(0)
+    frame["road_width_to_lane_ratio"] = frame["road_width_m"] / frame["lane_count"].clip(lower=1)
+    weather, time = conditions.get("weather", "clear"), conditions.get("time", "day")
+    frame["is_night"] = int(time in {"night", "dawn", "dusk"})
+    frame["is_rain"] = int(weather == "rain")
+    frame["is_festival"] = int(bool(conditions.get("festival", False)))
+    return frame.reindex(columns=FEATURES, fill_value=0).fillna(0)
