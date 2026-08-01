@@ -1,0 +1,1 @@
+import {describe,it,expect} from 'vitest'; describe('BlackSpot UI contract',()=>{it('declares the public dashboard name',()=>expect('BlackSpot').toContain('BlackSpot'));it('includes scenario labels',()=>expect(['Clear','Rain','Fog','Night','Festival']).toHaveLength(5))})

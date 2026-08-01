@@ -1,0 +1,38 @@
+.app-shell { height: 100vh; overflow: hidden; position: relative; background: var(--bg-primary); }
+main { height: 100%; width: 100%; position: absolute; inset: 0; }
+.map-wrap { height: 100%; width: 100%; }
+
+.sidebar {
+  position: absolute;
+  top: 76px;
+  right: 24px;
+  width: 360px;
+  max-height: calc(100vh - 100px);
+  background: var(--bg-glass);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow-y: auto;
+  padding: 24px;
+  z-index: 10;
+  box-shadow: var(--shadow-card);
+}
+
+.mode-indicator {
+  position: fixed; bottom: 20px; right: 24px; z-index: 6;
+  color: var(--text-secondary); font: 11px var(--font-mono);
+  background: transparent; padding: 0; border: none;
+}
+
+.modal-backdrop { position: fixed; inset: 0; z-index: 2000; display: grid; place-items: center; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); }
+.about-modal { position: relative; width: min(430px, 90vw); padding: 32px; border-radius: var(--radius-lg); background: var(--bg-elevated); border: 1px solid var(--border-subtle); box-shadow: var(--shadow-card); }
+.about-modal button { position: absolute; right: 16px; top: 12px; background: none; border: 0; color: var(--text-secondary); font-size: 24px; transition: color 0.2s; }
+.about-modal button:hover { color: #fff; }
+.about-modal h2 { font-size: 18px; font-weight: 500; margin-bottom: 16px; }
+.about-modal p { color: var(--text-secondary); line-height: 1.6; margin-bottom: 12px; }
+
+@media(max-width: 760px) {
+  .sidebar { top: auto; bottom: 80px; left: 12px; right: 12px; width: auto; max-height: 50vh; padding: 16px; }
+  .mode-indicator { display: none; }
+}

@@ -1,0 +1,1 @@
+import {useState} from 'react'; import type {Segment} from '../types'; export function useMapInteraction(){const [selected,setSelected]=useState<Segment|null>(null);return {selected,select:setSelected,clear:()=>setSelected(null)}}

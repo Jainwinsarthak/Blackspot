@@ -1,0 +1,2 @@
+import {HexagonLayer} from '@deck.gl/aggregation-layers'; import type {Segment} from '../../types';
+export const riskHexLayer=(data:Segment[])=>new HexagonLayer<Segment>({id:'risk-hexes',data,getPosition:(d:Segment)=>[d.lon,d.lat],getColorWeight:(d:Segment)=>d.risk_score??d.risk_score_base,getElevationWeight:(d:Segment)=>d.risk_score??d.risk_score_base,colorRange:[[52,211,153],[255,184,0],[255,107,53],[255,45,85]],radius:350,elevationScale:4,extruded:true,coverage:.85,upperPercentile:95,pickable:true});

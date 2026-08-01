@@ -1,0 +1,1 @@
+import type {ReactNode} from 'react'; import './Tooltip.css'; export function Tooltip({children,label}:{children:ReactNode;label:string}){return <span className="tooltip" data-tip={label}>{children}</span>}

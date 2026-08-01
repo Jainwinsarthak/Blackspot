@@ -1,0 +1,1 @@
+.tooltip{position:relative}.tooltip:hover:after{content:attr(data-tip);position:absolute;bottom:calc(100% + 6px);left:50%;transform:translateX(-50%);white-space:nowrap;background:#020617;color:#fff;padding:5px 7px;border-radius:5px;font-size:11px;z-index:10}

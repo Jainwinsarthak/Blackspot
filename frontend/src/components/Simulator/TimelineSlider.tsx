@@ -1,0 +1,1 @@
+import './TimelineSlider.css'; export function TimelineSlider({year,onChange}:{year:number;onChange:(v:number)=>void}){return <label className="timeline">Historical trend · {year}<input type="range" min="2020" max="2025" value={year} onChange={e=>onChange(+e.target.value)}/></label>}

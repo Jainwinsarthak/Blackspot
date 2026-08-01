@@ -1,0 +1,1 @@
+import {RISK_COLORS} from '../config/constants'; export const riskCategory=(v:number)=>v>=80?'critical':v>=60?'high':v>=35?'medium':'low'; export const riskColor=(v:number)=>RISK_COLORS[riskCategory(v)]; export const deckColor=(v:number):[number,number,number,number]=>v>=80?[255,45,85,225]:v>=60?[255,107,53,220]:v>=35?[255,184,0,210]:[52,211,153,200];

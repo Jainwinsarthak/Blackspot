@@ -1,0 +1,1 @@
+export const number=(v:number)=>new Intl.NumberFormat('en-IN').format(Math.round(v)); export const title=(value:string)=>value.replaceAll('_',' ').replace(/\b\w/g,(c:string)=>c.toUpperCase()); export const pct=(v:number)=>`${v.toFixed(1)}%`;

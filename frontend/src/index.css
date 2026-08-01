@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+:root {
+  --bg-primary: #0A0A0A;
+  --bg-secondary: #0A0A0A;
+  --bg-elevated: #151515;
+  --bg-glass: rgba(10, 10, 10, 0.65);
+  --risk-critical: #E5484D;
+  --risk-high: #F76B15;
+  --risk-medium: #FFB224;
+  --risk-low: #30A46C;
+  --risk-safe: #06b6d4;
+  --accent-primary: #EDEDED;
+  --accent-secondary: #878787;
+  --accent-glow: rgba(237, 237, 237, 0.2);
+  --text-primary: #EDEDED;
+  --text-secondary: #878787;
+  --text-muted: #5C5C5C;
+  --border-subtle: #232323;
+  --border-accent: rgba(255, 255, 255, 0.15);
+  --shadow-glow: 0 0 40px rgba(0, 0, 0, 0.8);
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.8);
+  --font-primary: Inter, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+* { box-sizing: border-box; }
+body { margin: 0; color: var(--text-primary); font: 13px var(--font-primary); background: var(--bg-primary); -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; }
+button { cursor: pointer; }
+h1, h2, h3, p { margin-top: 0; }
+.number { font-family: var(--font-mono); }
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-subtle); border-radius: 4px; }
